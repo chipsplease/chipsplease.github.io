@@ -1,0 +1,22 @@
+.songInput {
+    margin-bottom: 1em;
+}
+
+#importContainer {
+    margin-bottom: 2em;
+}
+
+#importContainer label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+#importContainer input[type="url"] {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#importContainer button {
+    display: inline-block;
+    vertical-align: top;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Playlist</title>
+    <link rel="stylesheet" href="main.css"> 
+    <link rel="stylesheet" href="create_playlist.css">
+</head>
+<body>
+    <header>
+        <h1>Create a New Playlist</h1>
+        <nav>
+            <button class="back_button" onclick="window.location.href = 'index.html'">Back</button>
+        </nav>
+    </header>
+    <main>
+        <form id="playlistForm">
+            <div>
+                <label for="playlistTitle">Playlist Title:</label>
+                <input type="text" id="playlistTitle" name="playlistTitle" required>
+            </div>
+            <div>
+                <label for="playlistDescription">Playlist Description:</label>
+                <textarea id="playlistDescription" name="playlistDescription" required></textarea>
+            </div>
+            <div>
+                <label for="playlistImageUrl">Playlist Image URL:</label>
+                <input type="url" id="playlistImageUrl" name="playlistImageUrl">
+            </div>
+            <div id="importContainer">
+                <h3>Import Songs from YouTube Playlist</h3>
+                <label for="youtubePlaylistUrl">YouTube Playlist URL:</label>
+                <input type="url" id="youtubePlaylistUrl" name="youtubePlaylistUrl">
+                <button type="button" onclick="">Import Songs(WIP)</button>
+            </div>
+            <h3>Songs</h3>
+            <div class="songInput">
+                <label for="songTitleInput">Song Title:</label>
+                <input type="text" class="songTitleInput" name="songTitleInput" >
+                <label for="songUrlInput">YouTube URL:</label>
+                <input type="url" class="songUrlInput" name="songUrlInput" >
+            <div>
+                <button type="button" onclick="addSong()">Add Another Song</button>
+                <button type="submit">Create Playlist</button>
+            </div>
+            </div>
+            <div id="songsContainer">
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2025 Song Battle. All rights reserved.</p>
+    </footer>
+    <script src="create_playlist.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.songs_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.youtube {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #B0B0B0;
+    margin: 10px;
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+}
