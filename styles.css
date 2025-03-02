@@ -1,0 +1,47 @@
+body {
+    background-color: #121212;
+    color: #E0E0E0;
+}
+
+.songs_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.song {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #B0B0B0;
+    margin: 10px;
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+}
+
+.song:hover {
+    border-color: #BB86FC;
+}
+
+.vote_button {
+    background-color: #1E1E1E;
+    color: #B0B0B0;
+    border: 1px solid #B0B0B0;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.vote_button:hover {
+    background-color: #BB86FC;
+    color: #121212;
+    border-color: #BB86FC;
+}
+
+.vote_button:active {
+    background-color: #03DAC6;
+    color: #121212;
+    border-color: #03DAC6;
+}
