@@ -16,30 +16,31 @@
     </header>
     <main>
         <form id="playlistForm">
+            <h3>Playlist</h3>
             <div>
-                <label for="playlistTitle">Playlist Title:</label>
+                <label for="playlistTitle">Title:</label>
                 <input type="text" id="playlistTitle" name="playlistTitle" required>
             </div>
             <div>
-                <label for="playlistDescription">Playlist Description:</label>
+                <label for="playlistDescription">Description:</label>
                 <textarea id="playlistDescription" name="playlistDescription" required></textarea>
             </div>
             <div>
-                <label for="playlistImageUrl">Playlist Image URL:</label>
+                <label for="playlistImageUrl">Image URL:</label>
                 <input type="url" id="playlistImageUrl" name="playlistImageUrl">
             </div>
             <div id="importContainer">
                 <h3>Import Songs from YouTube Playlist</h3>
-                <label for="youtubePlaylistUrl">YouTube Playlist URL:</label>
-                <input type="url" id="youtubePlaylistUrl" name="youtubePlaylistUrl">
-                <button type="button" onclick="">Import Songs(Coming soon)</button>
+                <label for="youtubePlaylistUrl">YouTube Playlist URL or ID:</label>
+                <input type="text" id="youtubePlaylistUrl" name="youtubePlaylistUrl" placeholder="e.g., https://www.youtube.com/playlist?list=RDsS2E-s-0g1I or RDsS2E-s-0g1I">
+                <button type="button" onclick="importSongs()">Import Songs</button>
             </div>
             <h3>Songs</h3>
             <div class="songInput">
                 <label for="songTitleInput">Song Title:</label>
                 <input type="text" class="songTitleInput" name="songTitleInput" >
-                <label for="songUrlInput">YouTube URL:</label>
-                <input type="url" class="songUrlInput" name="songUrlInput" >
+                <label for="songUrlInput">YouTube Embed URL:</label>
+                <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/embed/djV11Xbc914" >
             <div>
                 <button type="button" onclick="addSong()">Add Another Song</button>
                 <button type="submit">Create Playlist</button>
