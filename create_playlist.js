@@ -3,8 +3,15 @@ async function fetchPlaylistSongs(playlistId) {
     const data = await response.json();
     return data;
 }
+
 function addSong() {
     const songContainer = document.createElement('div');
+    const removeButton = document.createElement('button');
+    removeButton.innerHTML = 'Remove Song';
+    removeButton.classList.add('removeSong');
+    removeButton.onclick = function() {
+        songContainer.remove();
+    }
     let songTitle = document.getElementsByClassName('songTitleInput')[0]
     let songUrl = document.getElementsByClassName('songUrlInput')[0]
     songTitleString = songTitle.value
@@ -21,6 +28,8 @@ function addSong() {
     `;
     songTitle.value = ''
     songUrl.value = ''
+    songContainer.appendChild(removeButton);
+    
     document.getElementById('songsContainer').appendChild(songContainer);
 }
 
@@ -39,11 +48,6 @@ async function importSongs() {
     if (!playlistId) {
         alert('Please enter a valid YouTube playlist URL or ID.');
         return;
-    }
-    try {
-        songs = await fetchPlaylistSongs(playlistId);
-    } catch (error) {
-        console.error('Failed to fetch playlist songs:', error);
     }
     try {
         const songs = await fetchPlaylistSongs(playlistId);
@@ -82,10 +86,9 @@ document.getElementById('playlistForm').addEventListener('submit', function(even
         return;
     }
 
-    // Make sure that the length of songs is at least 2 and a power of 2
     const songsLength = songs.length;
-    if (songsLength < 2 || (songsLength & (songsLength - 1)) !== 0) {
-        alert('The number of songs must be at least 2 and a power of 2.');
+    if (songsLength < 2 || songsLength % 2 !== 0) {
+        alert('The number of songs must be at least 2 and an even number.');
         return;
     }
 
@@ -99,4 +102,6 @@ document.getElementById('playlistForm').addEventListener('submit', function(even
     }
     playlists.push(playlist);
     localStorage.setItem('playlists', JSON.stringify(playlists));
+    // Redirect to the playlists page
+    window.location.href = 'index.html';
 });
