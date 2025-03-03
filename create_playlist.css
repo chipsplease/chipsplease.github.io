@@ -20,3 +20,6 @@
     display: inline-block;
     vertical-align: top;
 }
+button[type="submit"] {
+    background-color: #1abc9ceb; 
+}
