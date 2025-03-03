@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Playlist</title>
+    <link rel="stylesheet" href="main.css"> 
+    <link rel="stylesheet" href="edit_playlist.css">
+</head>
+<body>
+    <header>
+        <h1>Edit Playlist</h1>
+        <nav>
+            <button class="back_button" onclick="window.location.href = 'index.html'">Back</button>
+        </nav>
+    </header>
+    <main>
+        <form id="playlistForm">
+            <h3>Playlist</h3>
+            <div>
+                <label for="playlistTitle">Title:</label>
+                <input type="text" id="playlistTitle" name="playlistTitle" required>
+            </div>
+            <div>
+                <label for="playlistDescription">Description:</label>
+                <textarea id="playlistDescription" name="playlistDescription" required></textarea>
+            </div>
+            <div>
+                <label for="playlistImageUrl">Image URL:</label>
+                <input type="url" id="playlistImageUrl" name="playlistImageUrl">
+            </div>
+            <h3>Songs</h3>
+            <div class="songInput">
+                <label for="songTitleInput">Song Title:</label>
+                <input type="text" class="songTitleInput" name="songTitleInput" >
+                <label for="songUrlInput">YouTube Embed URL:</label>
+                <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/embed/djV11Xbc914" >
+            <div>
+                <button type="button" onclick="addSong()">Add Another Song</button>
+                <button type="submit" style="background-color: teal;">Update Playlist</button>
+            </div>
+            </div>
+            <div id="songsContainer">
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2025 Song Battle. All rights reserved.</p>
+    </footer>
+    <script src="edit_playlist.js"></script>
+</body>
+</html>
