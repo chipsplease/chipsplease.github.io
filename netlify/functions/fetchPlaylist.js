@@ -5,7 +5,10 @@ exports.handler = async function(event, context) {
     const apiKey = process.env.YOUTUBE_API_KEY;
 
     try {
-        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`);
+        const requestUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`;
+        console.log('Request URL:', requestUrl);
+
+        const response = await fetch(requestUrl);
         
         if (!response.ok) {
             throw new Error(`YouTube API request failed with status ${response.status}`);
