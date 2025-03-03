@@ -25,23 +25,42 @@ function addSong() {
 }
 
 async function importSongs() {
-    const playlistUrl = document.getElementById('youtubePlaylistUrl').value;
+    const input = document.getElementById('youtubePlaylistUrl').value;
+    let playlistId;
+
+    // Check if the input is a URL or just the ID
+    if (input.includes('youtube.com')) {
+        const urlParams = new URLSearchParams(new URL(input).search);
+        playlistId = urlParams.get('list');
+    } else {
+        playlistId = input;
+    }
+
+    if (!playlistId) {
+        alert('Please enter a valid YouTube playlist URL or ID.');
+        return;
+    }
     try {
         songs = await fetchPlaylistSongs(playlistId);
     } catch (error) {
         console.error('Failed to fetch playlist songs:', error);
     }
-    songs.forEach(song => {
-        const songContainer = document.createElement('div');
-        songContainer.classList.add('song');
-        songContainer.innerHTML = `
-            <label for="songTitle">Song Title:</label>
-            <input type="text" class="songTitle" name="songTitle" value="${song.title}" required>
-            <label for="songUrl">YouTube URL:</label>
-            <input type="url" class="songUrl" name="songUrl" value="${song.youtube}" required>
-        `;
-        document.getElementById('songsContainer').appendChild(songContainer);
-    });
+    try {
+        const songs = await fetchPlaylistSongs(playlistId);
+        songs.forEach(song => {
+            const songContainer = document.createElement('div');
+            songContainer.classList.add('song');
+            songContainer.innerHTML = `
+                <label for="songTitle">Song Title:</label>
+                <input type="text" class="songTitle" name="songTitle" value="${song.title}" required>
+                <label for="songUrl">YouTube URL:</label>
+                <input type="url" class="songUrl" name="songUrl" value="${song.youtube}" required>
+            `;
+            document.getElementById('songsContainer').appendChild(songContainer);
+        });
+    } catch (error) {
+        console.error('Failed to fetch playlist songs:', error);
+    }
 }
 
 document.getElementById('playlistForm').addEventListener('submit', function(event) {
