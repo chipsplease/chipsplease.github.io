@@ -1,5 +1,5 @@
 async function fetchPlaylistSongs(playlistId) {
-    const response = await fetch(`/.netlify/functions/fetchPlaylist?playlistId=${playlistId}`);
+    const response = await fetch(`https://astonishing-frangipane-bf712a.netlify.app/.netlify/functions/fetchPlaylist?playlistId=${playlistId}`);
     const data = await response.json();
     return data;
 }
