@@ -1,14 +1,24 @@
-var playlists = localStorage.getItem('playlists');
-if (playlists) {
+function editPlaylist(playlistIndex) {
+    var playlists = localStorage.getItem('playlists');
+
     playlists = JSON.parse(playlists);
+    let playlist = playlists[playlistIndex];
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+    window.location.href = 'edit_playlist.html';
 }
-function getRandomColor() {
-    const darkThemeColors = [
-        'rgba(187, 134, 252, 0.5)', 'rgba(55, 0, 179, 0.5)', 'rgba(3, 218, 198, 0.5)', 
-        'rgba(207, 102, 121, 0.5)', 'rgba(3, 169, 244, 0.5)', 'rgba(76, 175, 80, 0.5)', 
-        'rgba(255, 152, 0, 0.5)', 'rgba(255, 87, 34, 0.5)'
-    ];
-    return darkThemeColors[Math.floor(Math.random() * darkThemeColors.length)];
+function startGame(playlistIndex) {
+    var playlists = localStorage.getItem('playlists');
+    playlists = JSON.parse(playlists);
+    let playlist = playlists[playlistIndex];
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+    window.location.href = 'game.html';
+}
+function removePlaylist(playlistIndex) {
+    var playlists = localStorage.getItem('playlists');
+    playlists = JSON.parse(playlists);
+    playlists.splice(playlistIndex, 1); // Remove the element at playlistIndex
+    localStorage.setItem('playlists', JSON.stringify(playlists));
+    window.location.href = 'index.html';
 }
 function populate_playlists(playlists){
     const playlistsContainer = document.getElementsByClassName('playlists_container')[0];
@@ -16,10 +26,10 @@ function populate_playlists(playlists){
     playlists.forEach(playlist => {
         const playlistContainer = document.createElement('div');
         playlistContainer.className = "playlist_container";
-        playlistContainer.style.backgroundColor = getRandomColor(); // Set random background color
         console.log("Setting playlist onclick to startGame with playlistIndex: " + playlistIndex);
-        (function(index) {
-            playlistContainer.onclick = function() {
+        
+        playlistContainer.onclick = (function(index) {
+            return function() {
                 startGame(index);
             };
         })(playlistIndex);
@@ -50,8 +60,45 @@ function populate_playlists(playlists){
         playlist_description_container.appendChild(playlist_description); 
         playlistContainer.appendChild(playlist_description_container);
 
+        const playlist_songs_count = document.createElement('h2');
+        playlist_songs_count.className = "playlist_songs_count";
+        playlist_songs_count.innerText = "Songs: " + playlist.songs.length;
+        playlistContainer.appendChild(playlist_songs_count);
+
+        const playlist_button_container = document.createElement('div');
+        playlist_button_container.className = "playlist_button_container"
+        const playlist_edit_button = document.createElement('button');
+        playlist_edit_button.className = "playlist_edit_button";
+        playlist_edit_button.innerText = "Edit";
+        
+        playlist_edit_button.onclick = (function(index) {
+            return function(event) {
+                event.stopPropagation(); // Stop the event from propagating to the parent
+                editPlaylist(index);
+            };
+        })(playlistIndex);
+        
+        const playlist_remove_button = document.createElement('button');
+        playlist_remove_button.className = "playlist_remove_button";
+        playlist_remove_button.innerText = "Remove";
+        playlist_remove_button.onclick = (function(index) {
+            return function(event) {
+                event.stopPropagation(); // Stop the event from propagating to the parent
+                removePlaylist(index);
+            };
+        })(playlistIndex);
+        playlist_button_container.appendChild(playlist_edit_button);
+        playlist_button_container.appendChild(playlist_remove_button);
+        playlistContainer.appendChild(playlist_button_container);
+
         playlistsContainer.appendChild(playlistContainer);
         playlistIndex++;
     });
+}
+var playlists = localStorage.getItem('playlists');
+if (playlists) {
+    playlists = JSON.parse(playlists);
+} else {
+    playlists = [];
 }
 populate_playlists(playlists);
