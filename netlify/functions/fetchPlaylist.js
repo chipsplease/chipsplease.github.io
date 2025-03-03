@@ -4,14 +4,37 @@ exports.handler = async function(event, context) {
     const playlistId = event.queryStringParameters.playlistId;
     const apiKey = process.env.YOUTUBE_API_KEY;
 
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`);
-    const data = await response.json();
+    try {
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${playlistId}&key=${apiKey}`);
+        
+        if (!response.ok) {
+            throw new Error(`YouTube API request failed with status ${response.status}`);
+        }
 
-    return {
-        statusCode: 200,
-        body: JSON.stringify(data.items.map(item => ({
-            title: item.snippet.title,
-            youtube: `https://www.youtube.com/embed/${item.snippet.resourceId.videoId}`
-        })))
-    };
+        const data = await response.json();
+
+        return {
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*', // Allow all origins
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET'
+            },
+            body: JSON.stringify(data.items.map(item => ({
+                title: item.snippet.title,
+                youtube: `https://www.youtube.com/embed/${item.snippet.resourceId.videoId}`
+            })))
+        };
+    } catch (error) {
+        console.error('Error fetching playlist:', error);
+        return {
+            statusCode: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*', // Allow all origins
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET'
+            },
+            body: JSON.stringify({ error: 'Failed to fetch playlist' })
+        };
+    }
 };
