@@ -23,3 +23,9 @@
 button[type="submit"] {
     background-color: #1abc9ceb; 
 }
+.removeSong {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
