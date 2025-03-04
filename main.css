@@ -42,11 +42,12 @@ label {
 
 input[type="text"], input[type="url"], textarea {
     width: 100%;
-    padding: 0.5em;
+    padding: 0.75em;
     border: 1px solid #333;
     border-radius: 4px;
     background-color: #333;
     color: #e0e0e0;
+    font-size: 1em;
 }
 
 button {
@@ -57,15 +58,20 @@ button {
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3sease, transform 0.3sease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     margin: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {background-color: #3700b3;
-    transform: scale(1.05)
+button:hover {
+    background-color: #3700b3;
+    transform: scale(1.05);
 }
-button:active {background-color: #3700b3;
+
+button:active {
+    background-color: #3700b3;
     transform: scale(1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 h3 {
