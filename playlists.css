@@ -17,8 +17,11 @@
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .playlist_container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background-color: rgba(187, 134, 252, 0.7);
 }
 .playlist_title_container {
