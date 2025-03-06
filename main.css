@@ -13,7 +13,11 @@ header, footer {
     background-color: #1f1f1f;
     padding: 1em;
 }
-
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 header h1, footer p {
     margin: 0;
 }
@@ -80,3 +84,6 @@ h3 {
 h2 {
     margin: 0;
 }
+textarea {
+    resize: none;
+  }
