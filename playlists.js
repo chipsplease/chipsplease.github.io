@@ -47,8 +47,8 @@ function populate_playlists(playlists){
 
         const playlist_image = document.createElement('img');
         playlist_image.src = playlist.imageUrl;
-        playlist_image.style.width = "200px";
-        playlist_image.style.height = "200px";
+        // playlist_image.style.width = "200px";
+        // playlist_image.style.height = "200px";
         playlist_image_container.appendChild(playlist_image);
         playlistContainer.appendChild(playlist_image_container);
 
