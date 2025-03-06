@@ -41,9 +41,8 @@ function tournamentBracket(songs) {
 function displayMatch(song1, song2) {
     document.getElementById('song1').querySelector('iframe').src = song1.youtube;
     document.getElementById('song2').querySelector('iframe').src = song2.youtube;
-    document.getElementsByClassName('song_title1')[0].innerText = song1.title;
-    document.getElementsByClassName('song_title2')[0].innerText = song2.title;
-
+    document.getElementById('song_title1').innerText = song1.title;
+    document.getElementById('song_title2').innerText = song2.title;
 }
 
 function vote(winnerIndex) {
