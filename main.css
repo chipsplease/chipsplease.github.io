@@ -52,9 +52,10 @@ input[type="text"], input[type="url"], textarea {
     background-color: #333;
     color: #e0e0e0;
     font-size: 1em;
+    box-sizing: border-box;
 }
 
-button {
+button[type="submit"], button[type="button"] {
     background-color: #6200ea;
     color: #fff;
     border: none;
