@@ -79,6 +79,7 @@ function populate_playlist(){
     playlist.songs.forEach(song => {
         const songContainer = document.createElement('div');
         const removeButton = document.createElement('button');
+        removeButton.type = 'button';
         removeButton.innerHTML = 'Remove Song';
         removeButton.classList.add('removeSong');
         removeButton.onclick = function() {
@@ -96,3 +97,37 @@ function populate_playlist(){
     });
 }
 populate_playlist();
+
+
+document.getElementById("export_playlist").addEventListener("click", function() {
+    var playlist = localStorage.getItem('playlist');
+    if (playlist) {
+        playlist = JSON.parse(playlist);
+    } else {
+        return [];
+    }
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(playlist));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "playlist.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+});
+document.getElementById("delete_playlist").addEventListener("click", function() {
+    var playlist = localStorage.getItem('playlist');
+    if (playlist) {
+        playlist = JSON.parse(playlist);
+    } else {
+        return [];
+    }
+    let playlists = localStorage.getItem('playlists');
+    if (playlists) {
+        playlists = JSON.parse(playlists);
+        playlists = playlists.filter(p => p.title !== playlist.title);
+    } else {
+        playlists = [];
+    }
+    localStorage.setItem('playlists', JSON.stringify(playlists));
+    window.location.href = 'index.html';
+});
