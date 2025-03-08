@@ -31,7 +31,11 @@ let debug_songs = [
 
 function tournamentBracket(songs) {
     if (songs.length === 1) { // End of the tournament
-        alert(`The winner is ${songs[0].title}!`); // Display the winner
+        // alert(`The winner is ${songs[0].title}!`); // Display the winner
+        document.getElementById('song1').classList.add('winner');
+        document.getElementById('song1').querySelector('iframe').src = songs[0].youtube;
+        document.getElementById('song_title1').innerText = songs[0].title;
+        document.getElementById('song2').style.display = 'none';
         return songs[0]; // The winner
     }
 
