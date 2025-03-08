@@ -1,3 +1,13 @@
 button {
     margin-left: 0;
 }
+
+#playlistHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+#playlistHeaderButtons {
+    margin: 0;
+}
