@@ -1,90 +1,44 @@
-let currentMatch = 0;
-let nextRound = [];
-let totalMatches = 0;
-let completedMatches = 0;
-let debug_songs = [
-    {
-        title: 'Song 1',
-        youtube: 'https://www.youtube.com/embed/1'
-    },
-    {
-        title: 'Song 2',
-        youtube: 'https://www.youtube.com/embed/2'
-    },
-    {
-        title: 'Song 3',
-        youtube: 'https://www.youtube.com/embed/3'
-    },
-    {
-        title: 'Song 4',
-        youtube: 'https://www.youtube.com/embed/4'
-    },
-    // {
-    //     title: 'Song 5',
-    //     youtube: 'https://www.youtube.com/embed/5'
-    // },
-    // {
-    //     title: 'Song 6',
-    //     youtube: 'https://www.youtube.com/embed/6'
-    // }
-];
-
-function tournamentBracket(songs) {
-    if (songs.length === 1) { // End of the tournament
-        // alert(`The winner is ${songs[0].title}!`); // Display the winner
-        document.getElementById('song1').classList.add('winner');
-        document.getElementById('song1').querySelector('iframe').src = songs[0].youtube;
-        document.getElementById('song_title1').innerText = songs[0].title;
-        document.getElementById('song2').style.display = 'none';
-        return songs[0]; // The winner
-    }
-
-    nextRound = []; // Reset nextRound for the next round
-    currentMatch = 0; // Reset currentMatch for the next round
-    updateProgressBar(); 
-    displayMatch(songs[currentMatch], songs[currentMatch + 1]);
-}
-
-function displayMatch(song1, song2) {
-    document.getElementById('song1').querySelector('iframe').src = song1.youtube;
-    document.getElementById('song2').querySelector('iframe').src = song2.youtube;
-    document.getElementById('song_title1').innerText = song1.title;
-    document.getElementById('song_title2').innerText = song2.title;
-}
-function updateProgressBar() {
-    const progress = (completedMatches / totalMatches) * 100;
-    document.getElementById('progress_bar').value = progress;
-}
-
-function vote(winnerIndex) {
-    let winner = songs[currentMatch + winnerIndex]; 
-    completedMatches++; 
-    nextRound.push(winner);
-    console.log("Next round: ", nextRound);
-
-    currentMatch += 2; 
-    if (currentMatch < songs.length - 1) { // Next match
-        displayMatch(songs[currentMatch], songs[currentMatch + 1]);
-    } else { // End of a round
-        songs = nextRound; // Update songs with the winners
-        tournamentBracket(songs); // Start the next round
-    }
-    updateProgressBar();
-}
-
-var playlist = JSON.parse(localStorage.getItem('playlist'))
-
-// let songs = debug_songs;
-let songs = playlist.songs;
-
-document.getElementsByClassName("playlist_title")[0].innerText = playlist.title;
-totalMatches = songs.length - 1;
-// Check if songs data exists
-if (songs) {
-    tournamentBracket(songs);
-} else {
-    console.error('No songs data found in localStorage');
-}
-// I could have just had a single array with the songs and pop the loser then take next two songs. When the array has only one song left, it is the winner.
-// Instead i made it harder for no reason
-// I could have also used a binary tree to make it easier to keep track of the matches
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vote for your favorite songs in the Song Battle game.">
+    <title>Song Battle</title>
+    <link rel="stylesheet" href="game.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>Song Battle</h1>
+        <h2 class="playlist_title"></h2>
+        <nav>
+            <button type="button" class="back_button" onclick="window.location.href = 'index.html'">Back</button>
+        </nav>
+    </header>
+    <main>
+        <div class="content_container">
+            <div class="progress_container">
+                <progress id="progress_bar" value="0" max="100"></progress>
+            </div>
+            <div class="songs_container">
+                <div class="youtube" id="song1">
+                    <h2 class="song_title" id="song_title1">Song Title 1</h2>
+                    <iframe width="560" height="315" src="http://www.youtube.com/embed/1" referrerpolicy="no-referrer-when-downgrade" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <button type="button" class="vote_button" onclick="vote(0)">Vote</button>
+                </div>
+                <div class="youtube" id="song2">
+                    <h2 class="song_title" id="song_title2">Song Title 2</h2>
+                    <iframe width="560" height="315" src="http://www.youtube.com/embed/1" referrerpolicy="no-referrer-when-downgrade" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <button type="button" class="vote_button" onclick="vote(1)">Vote</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Song Battle. All rights reserved.</p>
+        <button type="button" class="feedback_button" onclick="window.location.href = 'https://forms.office.com/e/sqUfPrc0sS'">Feedback</button>
+    </footer>
+    <script src="game.js"></script>
+</body>
+</html>
