@@ -12,12 +12,19 @@
     <header>
         <h1>Edit Playlist</h1>
         <nav>
-            <button class="back_button" onclick="window.location.href = 'index.html'">Back</button>
+            <button type="button" class="back_button" onclick="window.location.href = 'index.html'">Back</button>
         </nav>
     </header>
     <main>
         <form id="playlistForm">
-            <h3>Playlist</h3>
+            <div id="playlistHeader">
+                <h2>Playlist</h3>
+                <div id="playlistHeaderButtons">
+                    <button type="submit" style="background-color: teal;">Update Playlist</button>
+                    <button type="button" id="export_playlist">Export</button>
+                    <button type="button" id="delete_playlist" style="background-color: rgba(255, 0, 0, 0.492);">Delete</button>
+                </div>
+            </div>
             <div>
                 <label for="playlistTitle">Title:</label>
                 <input type="text" id="playlistTitle" name="playlistTitle" required>
@@ -38,7 +45,6 @@
                 <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/embed/djV11Xbc914" >
             <div>
                 <button type="button" onclick="addSong()">Add Another Song</button>
-                <button type="submit" style="background-color: teal;">Update Playlist</button>
             </div>
             </div>
             <div id="songsContainer">
