@@ -78,17 +78,18 @@ function populate_playlists(playlists){
             };
         })(playlistIndex);
         
-        const playlist_remove_button = document.createElement('button');
-        playlist_remove_button.className = "playlist_remove_button";
-        playlist_remove_button.innerText = "Remove";
-        playlist_remove_button.onclick = (function(index) {
-            return function(event) {
-                event.stopPropagation(); // Stop the event from propagating to the parent
-                removePlaylist(index);
-            };
-        })(playlistIndex);
+        // const playlist_remove_button = document.createElement('button');
+        // playlist_remove_button.className = "playlist_remove_button";
+        // playlist_remove_button.innerText = "Remove";
+        // playlist_remove_button.onclick = (function(index) {
+        //     return function(event) {
+        //         event.stopPropagation(); // Stop the event from propagating to the parent
+        //         removePlaylist(index);
+        //     };
+        // })(playlistIndex);
+        // playlist_button_container.appendChild(playlist_remove_button);
+
         playlist_button_container.appendChild(playlist_edit_button);
-        playlist_button_container.appendChild(playlist_remove_button);
         playlistContainer.appendChild(playlist_button_container);
 
         playlistsContainer.appendChild(playlistContainer);
@@ -154,8 +155,61 @@ var playlist1 = {
     ]
     
 };
-
-var saved_playlists = [playlist1];
+var playlist2 = {title:"Late 90s Early 2000s Rock Hits",
+    description:"Late 90s Early 2000s Rock Hits",
+    imageUrl:"https://townsquare.media/site/366/files/2023/04/attachment-2000s-Rock-Songs-Collage.jpg?w=780&q=75",
+    songs:[{title:"Numb (Official Music Video) [4K UPGRADE] – Linkin Park",youtube:"https://www.youtube.com/embed/kXYiU_JCYtU"},
+    {title:"Evanescence - Bring Me To Life (Official HD Music Video)",youtube:"https://www.youtube.com/embed/3YxaaGgTQYM"},
+    {title:"In The End [Official HD Music Video] - Linkin Park",youtube:"https://www.youtube.com/embed/eVTXPUF4Oz4"},
+    {title:"The Verve - Bitter Sweet Symphony",youtube:"https://www.youtube.com/embed/1lyu1KKwC74"},
+    {title:"System Of A Down - Chop Suey! (Official HD Video)",youtube:"https://www.youtube.com/embed/CSvFpBOe8eY"},
+    {title:"Audioslave - Like a Stone (Official Video)",youtube:"https://www.youtube.com/embed/7QU1nvuxaMA"},
+    {title:"Red Hot Chili Peppers - Californication (Official Music Video) [HD UPGRADE]",youtube:"https://www.youtube.com/embed/YlUKcNNmywk"},
+    {title:"3 Doors Down - Here Without You (Official Music Video)",youtube:"https://www.youtube.com/embed/kPBzTxZQG5Q"},
+    {title:"Bon Jovi - It's My Life (Official Music Video)",youtube:"https://www.youtube.com/embed/vx2u5uUu3DE"},
+    {title:"Goo Goo Dolls – Iris [Official Music Video] [4K Remaster]",youtube:"https://www.youtube.com/embed/NdYWuo9OFAw"},
+    {title:"Garth. // Good Taste (Official Visualizer)",youtube:"https://www.youtube.com/embed/EvQKzm_r_7I"},
+    {title:"Eric Benét & Chanté Moore - ",youtube:"https://www.youtube.com/embed/wCSET4s7tYQ"},
+    {title:"The Offspring - The Kids Aren't Alright (Official Music Video)",youtube:"https://www.youtube.com/embed/7iNbnineUCI"},
+    {title:"Faint (Official Music Video) [4K UPGRADE] – Linkin Park",youtube:"https://www.youtube.com/embed/LYU-8IFcDPw"},
+    {title:"The Calling - Wherever You Will Go (First Video- in Tijuana)",youtube:"https://www.youtube.com/embed/iAP9AF6DCu4"},
+    {title:"Eric Carmen - Hungry Eyes (Official HD Video)",youtube:"https://www.youtube.com/embed/2ssCL292DQA"},
+    {title:"Nickelback - How You Remind Me",youtube:"https://www.youtube.com/embed/1cQh1ccqu8M"},
+    {title:"3 Doors Down - Kryptonite (Official Video)",youtube:"https://www.youtube.com/embed/xPU8OAjjS4k"},
+    {title:"Breaking the Habit (Official Music Video) [HD UPGRADE] – Linkin Park",youtube:"https://www.youtube.com/embed/v2H4l9RpkwM"},
+    {title:"Wheatus - Teenage Dirtbag (Official Video)",youtube:"https://www.youtube.com/embed/FC3y9llDXuM"},
+    {title:"Three Days Grace - I Hate Everything About You (Official Video)",youtube:"https://www.youtube.com/embed/d8ekz_CSBVg"},
+    {title:"Yanique - Long Way Home Ft Leeky",youtube:"https://www.youtube.com/embed/tC5DeMyzY-c"},
+    {title:"FattMack  - Bad Day [Official Music Video]",youtube:"https://www.youtube.com/embed/56NNQK-MFH8"},
+    {title:"Disturbed - Down With The Sickness (Official Music Video) [HD UPGRADE]",youtube:"https://www.youtube.com/embed/09LTT0xwdfw"},
+    {title:"Creed - One Last Breath (Official HD Music Video)",youtube:"https://www.youtube.com/embed/qnkuBUAwfe0"},
+    {title:"Alien Ant Farm - Smooth Criminal (Official Music Video)",youtube:"https://www.youtube.com/embed/CDl9ZMfj6aE"},
+    {title:"Smash Mouth - All Star",youtube:"https://www.youtube.com/embed/L_jWHffIx5E"},
+    {title:"Limp Bizkit - Break Stuff (Official Music Video)",youtube:"https://www.youtube.com/embed/ZpUYjpKg9KY"},
+    {title:"Red Hot Chili Peppers - Scar Tissue [Official Music Video] [HD UPGRADE]",youtube:"https://www.youtube.com/embed/mzJj5-lubeM"},
+    {title:"Creed - My Sacrifice",youtube:"https://www.youtube.com/embed/O-fyNgHdmLI"},
+    {title:"Crazy Town - Butterfly (Official Video)",youtube:"https://www.youtube.com/embed/6FEDrU85FLE"},
+    {title:"Limp Bizkit ",youtube:"https://www.youtube.com/embed/Tr8uesBowS4"},
+    {title:"Bleona - Boy Gone Bad (Official Music Video)",youtube:"https://www.youtube.com/embed/h6BiiviB5cY"},
+    {title:"Crawling [Official HD Music Video] - Linkin Park",youtube:"https://www.youtube.com/embed/Gd9OhYroLN0"},
+    {title:"Evanescence - My Immortal (Official HD Music Video)",youtube:"https://www.youtube.com/embed/5anLPw0Efmo"},
+    {title:"One Step Closer [Official HD Music Video] - Linkin Park",youtube:"https://www.youtube.com/embed/4qlCC1GOwFw"},
+    {title:"Foo Fighters - Everlong (Official HD Video)",youtube:"https://www.youtube.com/embed/eBG7P-K-r1Y"},
+    {title:"Aerosmith - Hole In My Soul",youtube:"https://www.youtube.com/embed/HaC0s-FP-r4"},
+    {title:"Incubus - Drive",youtube:"https://www.youtube.com/embed/fgT9zGkiLig"},
+    {title:"blink-182 - All The Small Things (Official Music Video)",youtube:"https://www.youtube.com/embed/9Ht5RZpzPqw"},
+    {title:"The Offspring - Pretty Fly (For A White Guy) (Official Music Video)",youtube:"https://www.youtube.com/embed/QtTR-_Klcq8"},
+    {title:"Avril Lavigne - Sk8er Boi (Official Video)",youtube:"https://www.youtube.com/embed/TIy3n2b7V9k"},
+    {title:"Limp Bizkit - My Way",youtube:"https://www.youtube.com/embed/Dn8vzTsnPps"},
+    {title:"HoodTrophy Bino - Baby (Official Music Video)",youtube:"https://www.youtube.com/embed/aDZBDuRba3o"},
+    {title:"Staind - It's Been Awhile (Official Video)",youtube:"https://www.youtube.com/embed/araU0fZj6oQ"},
+    {title:"Sublime - Santeria (Official Music Video)",youtube:"https://www.youtube.com/embed/AEYN5w4T_aM"},
+    {title:"Jimmy Eat World - The Middle (Official Music Video)",youtube:"https://www.youtube.com/embed/oKsxPW6i3pM"},
+    {title:"David Bowie - Starman [Official Lyric Video]",youtube:"https://www.youtube.com/embed/rpO1U-nEgRU"},
+    {title:"Lost [Official Music Video] - Linkin Park",youtube:"https://www.youtube.com/embed/7NK_JOkuSVY"},
+    {title:"Blur - Song 2 (Official Music Video)",youtube:"https://www.youtube.com/embed/SSbBvKaM6sk"}]
+};
+var saved_playlists = [playlist1, playlist2];
 var playlists = localStorage.getItem('playlists') ? JSON.parse(localStorage.getItem('playlists')) : [];
 
 // Check if any saved playlist is not in the playlists array then add it
