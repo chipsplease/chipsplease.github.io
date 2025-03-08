@@ -14,13 +14,6 @@ function startGame(playlistIndex) {
     localStorage.setItem('playlist', JSON.stringify(playlist));
     window.location.href = 'game.html';
 }
-function removePlaylist(playlistIndex) {
-    var playlists = localStorage.getItem('playlists');
-    playlists = JSON.parse(playlists);
-    playlists.splice(playlistIndex, 1); // Remove the element at playlistIndex
-    localStorage.setItem('playlists', JSON.stringify(playlists));
-    window.location.href = 'index.html';
-}
 function populate_playlists(playlists){
     const playlistsContainer = document.getElementsByClassName('playlists_container')[0];
     let playlistIndex = 0;
@@ -68,6 +61,7 @@ function populate_playlists(playlists){
         const playlist_button_container = document.createElement('div');
         playlist_button_container.className = "playlist_button_container"
         const playlist_edit_button = document.createElement('button');
+        playlist_edit_button.type = 'button';
         playlist_edit_button.className = "playlist_edit_button";
         playlist_edit_button.innerText = "Edit";
         
