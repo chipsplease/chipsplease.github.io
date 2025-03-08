@@ -12,12 +12,15 @@
     <header>
         <h1>Create a New Playlist</h1>
         <nav>
-            <button class="back_button" onclick="window.location.href = 'index.html'">Back</button>
+            <button type="button" class="back_button" onclick="window.location.href = 'index.html'">Back</button>
         </nav>
     </header>
     <main>
         <form id="playlistForm">
-            <h3>Playlist</h3>
+            <div id="playlistHeader">
+                <h2>Playlist</h3>
+                <button type="submit">Create Playlist</button>
+            </div>
             <div>
                 <label for="playlistTitle">Title:</label>
                 <input type="text" id="playlistTitle" name="playlistTitle" required>
@@ -44,7 +47,6 @@
                 <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/embed/djV11Xbc914" >
             <div>
                 <button type="button" onclick="addSong()">Add Another Song</button>
-                <button type="submit">Create Playlist</button>
             </div>
             </div>
             <p class="disclaimer">Note: The playlist you create will be private and only you can see it.</p>
@@ -54,7 +56,7 @@
     </main>
     <footer>
         <p>&copy; 2025 Song Battle. All rights reserved.</p>
-        <button class="feedback_button" onclick="window.location.href = 'https://forms.office.com/e/sqUfPrc0sS'">Feedback</button>
+        <button type="button" class="feedback_button" onclick="window.location.href = 'https://forms.office.com/e/sqUfPrc0sS'">Feedback</button>
     </footer>
     <script src="create_playlist.js"></script>
 </body>
