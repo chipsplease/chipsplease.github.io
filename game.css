@@ -16,6 +16,12 @@
     color: #E0E0E0;
     width: 45%; /* Adjust width as needed */
 }
+@media screen and (max-width: 768px) {
+    .youtube {
+        width: 100%;
+    }
+    
+}
 .youtube iframe {
     width: 100%;
     height: auto;
