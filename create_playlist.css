@@ -20,21 +20,44 @@
     display: inline-block;
     vertical-align: top;
 }
-button[type="submit"] {
+#buttonSubmit {
     background-color: #1abc9ceb; 
 }
-.removeSong {
-    background-color: #e74c3c;
+#buttonSubmit:hover {
+    background-color: #1abc9c;
+}
+
+#removeSong {
+    background-color: red;
     color: white;
     border: none;
     cursor: pointer;
-}
-button {
     margin-left: 0;
+}
+#removeSong:hover {
+    background-color: darkred;
 }
 #playlistHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+}
+.importHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+.importHeader h3 {
+    margin: 0;
+}
+#importPlaylistButton {
+    margin-left: 0;
+}
+#addButton {
+    margin-left: 0;
+}
+#spotifyIcon{
+    margin-left: 10px;
 }

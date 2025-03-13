@@ -30,12 +30,10 @@ let debug_songs = [
 ];
 
 function tournamentBracket(songs) {
+    console.log("Songs: ", songs);
     if (songs.length === 1) { // End of the tournament
-        // alert(`The winner is ${songs[0].title}!`); // Display the winner
-        document.getElementById('song1').classList.add('winner');
-        document.getElementById('song1').querySelector('iframe').src = songs[0].youtube;
-        document.getElementById('song_title1').innerText = songs[0].title;
-        document.getElementById('song2').style.display = 'none';
+        // Alert the winner
+        alert(`The winner is: ${songs[0].title}`);
         return songs[0]; // The winner
     }
 
@@ -45,9 +43,35 @@ function tournamentBracket(songs) {
     displayMatch(songs[currentMatch], songs[currentMatch + 1]);
 }
 
+function createYoutubeEmbed(iFrame, videoUrl) {
+    iFrame.src = videoUrl
+    iFrame.style.display = 'block';
+    iFrame.style.width = '99%';
+    iFrame.referrerPolicy = 'no-referrer-when-downgrade';
+    iFrame.allow = 'autoplay; encrypted-media';
+    iFrame.allowFullscreen = true;
+}
+function createSpotifyEmbed(iFrame, videoUrl) {
+    iFrame.src = videoUrl + "?&theme=0"; 
+    iFrame.style.display = 'block';
+    iFrame.style.width = '99%';
+    // iFrame.style.height = "352px"
+    iFrame.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    iFrame.loading = "lazy"
+}
 function displayMatch(song1, song2) {
-    document.getElementById('song1').querySelector('iframe').src = song1.youtube;
-    document.getElementById('song2').querySelector('iframe').src = song2.youtube;
+    let song1Iframe = document.getElementById('song1').querySelector('iframe')
+    let song2Iframe = document.getElementById('song2').querySelector('iframe')
+    if (song1.youtube) {
+        createYoutubeEmbed(song1Iframe, song1.youtube);
+    } else {
+        createSpotifyEmbed(song1Iframe, song1.spotify);
+    }
+    if (song2.youtube) {
+        createYoutubeEmbed(song2Iframe, song2.youtube);
+    } else {
+        createSpotifyEmbed(song2Iframe, song2.spotify);
+    }
     document.getElementById('song_title1').innerText = song1.title;
     document.getElementById('song_title2').innerText = song2.title;
 }
