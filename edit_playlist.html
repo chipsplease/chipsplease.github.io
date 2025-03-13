@@ -42,10 +42,10 @@
             <div class="songInput">
                 <label for="songTitleInput">Song Title:</label>
                 <input type="text" class="songTitleInput" name="songTitleInput" >
-                <label for="songUrlInput">YouTube Embed URL:</label>
-                <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/embed/djV11Xbc914" >
+                <label for="songUrlInput">YouTube Or Spotify URL:</label>
+                <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/watch?v=djV11Xbc914 or https://open.spotify.com/track/4REjaHRPmVb7btssqChJSy" >
             <div>
-                <button type="button" onclick="addSong()">Add Another Song</button>
+                <button type="button" id="addButton" onclick="addSong()">Add Another Song</button>
             </div>
             </div>
             <div id="songsContainer">

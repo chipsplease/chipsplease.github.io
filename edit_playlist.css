@@ -11,3 +11,16 @@ button {
 #playlistHeaderButtons {
     margin: 0;
 }
+#removeSong {
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 0;
+}
+#removeSong:hover {
+    background-color: darkred;
+}
+#addButton {
+    margin-left: 0;
+}
