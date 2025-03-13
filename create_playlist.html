@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Create a new playlist for Song Battle. Add songs and share your favorite music.">
     <title>Create Playlist</title>
-    <link rel="stylesheet" href="main.css"> 
     <link rel="stylesheet" href="create_playlist.css">
+    <link rel="stylesheet" href="main.css"> 
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
         <form id="playlistForm">
             <div id="playlistHeader">
                 <h2>Playlist</h3>
-                <button type="submit">Create Playlist</button>
+                <button id="buttonSubmit" type="submit">Create Playlist</button>
             </div>
             <div>
                 <label for="playlistTitle">Title:</label>
@@ -35,19 +35,23 @@
                 <input type="url" id="playlistImageUrl" name="playlistImageUrl">
             </div>
             <div id="importContainer">
-                <h3>Import Songs from YouTube Playlist</h3>
-                <label for="youtubePlaylistUrl">YouTube Playlist URL or ID:</label>
-                <input type="text" id="youtubePlaylistUrl" name="youtubePlaylistUrl" placeholder="e.g., https://www.youtube.com/playlist?list=RDsS2E-s-0g1I or RDsS2E-s-0g1I">
-                <button type="button" onclick="importSongs()">Import Songs</button>
+                <div class="importHeader">
+                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FA5252/youtube-play.png" alt="youtube-play"/>
+                    <h3>Import Songs from YouTube Playlist</h3>
+                    <img width="48" height="48" src="https://img.icons8.com/color/48/spotify--v1.png" alt="spotify--v1" id="spotifyIcon"/>
+                    <h3>Import Songs from Spotify Playlist</h3>
+                </div>
+                <input type="text" id="playlistUrl" placeholder="Enter YouTube or Spotify playlist URL">
+                <button type="button" id="importPlaylistButton">Import Playlist</button>
             </div>
             <h3>Songs</h3>
             <div class="songInput">
                 <label for="songTitleInput">Song Title:</label>
                 <input type="text" class="songTitleInput" name="songTitleInput" >
-                <label for="songUrlInput">YouTube Embed URL:</label>
-                <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/embed/djV11Xbc914" >
+                <label for="songUrlInput">YouTube Or Spotify URL:</label>
+                <input type="url" class="songUrlInput" name="songUrlInput" placeholder="https://www.youtube.com/watch?v=djV11Xbc914 or https://open.spotify.com/track/4REjaHRPmVb7btssqChJSy" >
             <div>
-                <button type="button" onclick="addSong()">Add Another Song</button>
+                <button type="button" id="addButton" onclick="addSong()">Add Another Song</button>
             </div>
             </div>
             <p class="disclaimer">Note: The playlist you create will be private and only you can see it.</p>
