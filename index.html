@@ -11,7 +11,10 @@
 <body>
     <header>
         <h1>Song Battle</h1>
-        <button class="create_playlist_button" onclick="window.location.href = 'create_playlist.html'">Create Playlist</button>
+        <div class="button_container">
+            <button class="create_playlist_button" onclick="window.location.href = 'create_playlist.html'">Create Playlist</button>
+            <button class="shuffle_all_button" onclick="shuffleAllSongs()">Shuffle All</button>
+        </div>
     </header>
     <main>
         <p class="instructions">Welcome to Song Battle! Create and explore playlists, and vote for your favorite songs.</p>
