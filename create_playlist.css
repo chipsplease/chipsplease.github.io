@@ -49,6 +49,7 @@
     align-items: center;
     flex-direction: row;
     margin: 0;
+    margin-bottom: 10px;
 }
 .importHeader h3 {
     margin: 0;
@@ -62,19 +63,6 @@
 #spotifyIcon{
     margin-left: 10px;
 }
-.attribution {
-    font-size: 12px;
-    color: #666;
-    margin: 0;
-    margin-bottom: 10px;
-}
-
-.attribution a {
-    color: #666;
-    text-decoration: none;
-    margin: 0
-}
-
-.attribution a:hover {
-    text-decoration: underline;
+#youtubeLogo {
+    margin-right: 2px;
 }
