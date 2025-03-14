@@ -50,9 +50,17 @@
     flex-direction: row;
     margin: 0;
     margin-bottom: 10px;
+    gap: 10px;
+}
+@media screen and (max-width: 768px) {
+    .importHeader {
+        flex-direction: column;
+    }
+    
 }
 .importHeader h3 {
     margin: 0;
+    font-weight: 400;
 }
 #importPlaylistButton {
     margin-left: 0;
@@ -60,9 +68,15 @@
 #addButton {
     margin-left: 0;
 }
-#spotifyIcon{
-    margin-left: 10px;
+#spotifyHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
 }
-#youtubeLogo {
-    margin-right: 2px;
+#youtubeHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
 }
