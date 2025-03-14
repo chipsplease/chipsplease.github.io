@@ -115,11 +115,17 @@
     border-radius: 5px;
     line-height: 1.5;
 }
+.playlist_image_container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
 .playlist_image_container >img {
     max-width: 250px;
     height: 200px;
     width: 100%;
     display: block;
+    margin: auto;
 }
 #playlist_songs_count {
     font-size: 14px;
