@@ -19,7 +19,7 @@ exports.handler = async function(event, context) {
         return {
             statusCode: 200,
             headers: {
-                'Access-Control-Allow-Origin': '*', // Allow all origins
+                'Access-Control-Allow-Origin': 'https://astonishing-frangipane-bf712a.netlify.app', // Allow all origins
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
             },
@@ -33,7 +33,7 @@ exports.handler = async function(event, context) {
         return {
             statusCode: 500,
             headers: {
-                'Access-Control-Allow-Origin': '*', // Allow all origins
+                'Access-Control-Allow-Origin': 'https://astonishing-frangipane-bf712a.netlify.app', // Allow all origins
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
             },
