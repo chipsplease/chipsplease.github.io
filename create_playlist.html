@@ -36,10 +36,14 @@
             </div>
             <div id="importContainer">
                 <div class="importHeader">
-                    <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/FA5252/youtube-play.png" alt="youtube-play"/>
-                    <h3>Import Songs from YouTube Playlist</h3>
-                    <img width="48" height="48" src="https://img.icons8.com/color/48/spotify--v1.png" alt="spotify--v1" id="spotifyIcon"/>
-                    <h3>Import Songs from Spotify Playlist</h3>
+                    <div id="youtubeHeader">
+                        <img width="50" height="50" src="images/youtubeLogo.svg" alt="youtube-play" id="youtubeLogo"/>
+                        <h3>Import Songs from a YouTube Playlist</h3>
+                    </div>
+                    <div id="spotifyHeader">
+                        <img width="50" height="50" src="images/spotifyLogo.svg" alt="spotify--v1" id="spotifyIcon"/>
+                        <h3>Import Songs from a Spotify Playlist</h3>
+                    </div>
                 </div>
                 <input type="text" id="playlistUrl" placeholder="Enter YouTube or Spotify playlist URL">
                 <button type="button" id="importPlaylistButton">Import Playlist</button>
@@ -60,7 +64,7 @@
         </form>
     </main>
     <footer>
-        <p>&copy; 2025 Song Battle. All rights reserved.</p>
+        <p>&copy; 2025 Song Battle. All rights reserved. YouTube and Spotify are trademarks of their respective owners.</p>
         <button type="button" class="feedback_button" onclick="window.location.href = 'https://forms.office.com/e/sqUfPrc0sS'">Feedback</button>
     </footer>
     <script src="create_playlist.js"></script>
