@@ -35,7 +35,7 @@ exports.handler = async function(event, context) {
         return {
             statusCode: 200,
             headers: {
-                'Access-Control-Allow-Origin': '*', // Allow all origins
+                'Access-Control-Allow-Origin': 'https://chipsplease.github.io',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
             },
@@ -49,7 +49,7 @@ exports.handler = async function(event, context) {
         return {
             statusCode: 500,
             headers: {
-                'Access-Control-Allow-Origin': '*', // Allow all origins
+                'Access-Control-Allow-Origin': 'https://chipsplease.github.io', // Allow all origins
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
             },
