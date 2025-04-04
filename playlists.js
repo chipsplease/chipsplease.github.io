@@ -1,4 +1,4 @@
-// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+// Fisher-Yates shuffle algorithm for randomizing array elements
 function shuffle(array) { 
     let currentIndex = array.length;
   
@@ -14,6 +14,8 @@ function shuffle(array) {
         array[randomIndex], array[currentIndex]];
     }
 } 
+
+// Shuffles songs in all playlists and updates localStorage
 function shuffleAllSongs(){
     var playlists = localStorage.getItem('playlists');
     playlists = JSON.parse(playlists);
@@ -23,6 +25,7 @@ function shuffleAllSongs(){
     localStorage.setItem('playlists', JSON.stringify(playlists));
 }
 
+// Navigates to edit page for selected playlist
 function editPlaylist(playlistIndex) {
     var playlists = localStorage.getItem('playlists');
 
@@ -31,6 +34,8 @@ function editPlaylist(playlistIndex) {
     localStorage.setItem('playlist', JSON.stringify(playlist));
     window.location.href = 'edit_playlist.html';
 }
+
+// Starts the voting game for selected playlist
 function startGame(playlistIndex) {
     var playlists = localStorage.getItem('playlists');
     playlists = JSON.parse(playlists);
@@ -38,19 +43,68 @@ function startGame(playlistIndex) {
     localStorage.setItem('playlist', JSON.stringify(playlist));
     window.location.href = 'game.html';
 }
+
+function removePlaylist(playlistIndex) {
+    const dialog = document.createElement('div');
+    dialog.className = 'confirm_dialog';
+    dialog.innerHTML = `
+        <p>Are you sure you want to remove this playlist?</p>
+        <div class="dialog_buttons">
+            <button class="dialog_cancel">No</button>
+            <button class="dialog_confirm">Yes</button>
+        </div>
+    `;
+    document.body.appendChild(dialog);
+    
+    // Show dialog
+    setTimeout(() => dialog.classList.add('active'), 10);
+    
+    // Handle button clicks
+    dialog.querySelector('.dialog_confirm').onclick = function() {
+        var playlists = JSON.parse(localStorage.getItem('playlists'));
+        playlists.splice(playlistIndex, 1);
+        localStorage.setItem('playlists', JSON.stringify(playlists));
+        
+        // Refresh the page to show updated playlists
+        location.reload();
+    };
+    
+    dialog.querySelector('.dialog_cancel').onclick = function() {
+        dialog.remove();
+    };
+}
+
+// Dynamically creates and populates playlist cards in the UI
 function populate_playlists(playlists){
     const playlistsContainer = document.getElementsByClassName('playlists_container')[0];
     let playlistIndex = 0;
     playlists.forEach(playlist => {
+        // Create main container for playlist card
         const playlistContainer = document.createElement('div');
         playlistContainer.className = "playlist_container";
         
-        playlistContainer.onclick = (function(index) {
-            return function() {
+        // Create and add image section with play button
+        const playlist_image_container = document.createElement('div');
+        playlist_image_container.className = "playlist_image_container";
+
+        const playlist_image = document.createElement('img');
+        playlist_image.src = playlist.imageUrl;
+        playlist_image_container.appendChild(playlist_image);
+
+        // Add play button inside image container
+        const playButton = document.createElement('div');
+        playButton.className = "play_button";
+        playButton.onclick = (function(index) {
+            return function(event) {
+                event.stopPropagation();
                 startGame(index);
             };
         })(playlistIndex);
+        playlist_image_container.appendChild(playButton);
         
+        playlistContainer.appendChild(playlist_image_container);
+
+        // Create and add title section
         const playlist_title_container = document.createElement('div');
         playlist_title_container.className = "playlist_title_container";
 
@@ -59,16 +113,7 @@ function populate_playlists(playlists){
         playlist_title_container.appendChild(playlist_title);
         playlistContainer.appendChild(playlist_title_container);
 
-        const playlist_image_container = document.createElement('div');
-        playlist_image_container.className = "playlist_image_container";
-
-        const playlist_image = document.createElement('img');
-        playlist_image.src = playlist.imageUrl;
-        // playlist_image.style.width = "200px";
-        // playlist_image.style.height = "200px";
-        playlist_image_container.appendChild(playlist_image);
-        playlistContainer.appendChild(playlist_image_container);
-
+        // Create and add description section
         const playlist_description_container = document.createElement('div');
         playlist_description_container.className = "playlist_description_container";
 
@@ -77,11 +122,13 @@ function populate_playlists(playlists){
         playlist_description_container.appendChild(playlist_description); 
         playlistContainer.appendChild(playlist_description_container);
 
+        // Add song count display
         const playlist_songs_count = document.createElement('h2');
         playlist_songs_count.className = "playlist_songs_count";
         playlist_songs_count.innerText = "Songs: " + playlist.songs.length;
         playlistContainer.appendChild(playlist_songs_count);
 
+        // Create and add edit button
         const playlist_button_container = document.createElement('div');
         playlist_button_container.className = "playlist_button_container"
         const playlist_edit_button = document.createElement('button');
@@ -96,16 +143,16 @@ function populate_playlists(playlists){
             };
         })(playlistIndex);
         
-        // const playlist_remove_button = document.createElement('button');
-        // playlist_remove_button.className = "playlist_remove_button";
-        // playlist_remove_button.innerText = "Remove";
-        // playlist_remove_button.onclick = (function(index) {
-        //     return function(event) {
-        //         event.stopPropagation(); // Stop the event from propagating to the parent
-        //         removePlaylist(index);
-        //     };
-        // })(playlistIndex);
-        // playlist_button_container.appendChild(playlist_remove_button);
+        const playlist_remove_button = document.createElement('button');
+        playlist_remove_button.className = "playlist_remove_button";
+        playlist_remove_button.innerText = "Remove";
+        playlist_remove_button.onclick = (function(index) {
+            return function(event) {
+                event.stopPropagation();
+                removePlaylist(index);
+            };
+        })(playlistIndex);
+        playlist_button_container.appendChild(playlist_remove_button);
 
         playlist_button_container.appendChild(playlist_edit_button);
         playlistContainer.appendChild(playlist_button_container);
@@ -115,6 +162,7 @@ function populate_playlists(playlists){
     });
 }
 
+// Predefined playlist data
 var playlist1 = {
     title: "The Top 100: UK Number 1's of the 80's",
     description: "The greatest songs that topped the UK Charts in the 1980's. All the best number ones from 1980 - 1989.",
@@ -173,7 +221,8 @@ var playlist1 = {
     ]
     
 };
-var playlist2 = {title:"Late 90s Early 2000s Rock Hits",
+var playlist2 = {
+    title:"Late 90s Early 2000s Rock Hits",
     description:"Late 90s Early 2000s Rock Hits",
     imageUrl:"images/playlist2.webp",
     songs:[{title:"Numb (Official Music Video) [4K UPGRADE] – Linkin Park",youtube:"https://www.youtube.com/embed/kXYiU_JCYtU"},
@@ -228,7 +277,8 @@ var playlist2 = {title:"Late 90s Early 2000s Rock Hits",
     {title:"Blur - Song 2 (Official Music Video)",youtube:"https://www.youtube.com/embed/SSbBvKaM6sk"}]
 };
 
-var playlist3 = {title:"Best 2000s Pop Hits - Greatest Pop Songs",
+var playlist3 = 
+    {title:"Best 2000s Pop Hits - Greatest Pop Songs",
     description:"Best 2000s Pop Hits - Greatest Pop Songs from The 2000’s",
     imageUrl:"images/playlist3.webp",
     songs:[{title:"Lady Gaga - Poker Face (Official Music Video)",youtube:"https://www.youtube.com/embed/bESGLojNYSo"},
@@ -280,9 +330,11 @@ var playlist3 = {title:"Best 2000s Pop Hits - Greatest Pop Songs",
     {title:"Natasha Bedingfield - Unwritten (Official Video) (as featured in Anyone But You)",youtube:"https://www.youtube.com/embed/b7k0a5hYnSI"},
     {title:"Britney Spears - Womanizer (Director's Cut) (Official HD Video)",youtube:"https://www.youtube.com/embed/rMqayQ-U74s"},
     {title:"The Pussycat Dolls - Hush Hush; Hush Hush (Official Music Video)",youtube:"https://www.youtube.com/embed/3BBsF7VIQyo"},
-    {title:"Rihanna - Disturbia",youtube:"https://www.youtube.com/embed/E1mU6h4Xdxc"}]};
+    {title:"Rihanna - Disturbia",youtube:"https://www.youtube.com/embed/E1mU6h4Xdxc"}]
+};
 
-var playlist4 = {title:"pepeJAM",
+var playlist4 = {
+    title:"pepeJAM",
     description:"pepeJAM",
     imageUrl:"https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da849e3b313d57e0e8d6e3bbfe54",
     songs:[{title:"Top Gun","spotify":"https://open.spotify.com/embed/track/5MFaZQtRd4iJYP7X9667sv"},
@@ -329,15 +381,19 @@ var playlist4 = {title:"pepeJAM",
     {title:"Fandango","spotify":"https://open.spotify.com/embed/track/3xzJBv06yWSKC5sOCPTsyw"},
     {title:"Tri Poloski","spotify":"https://open.spotify.com/embed/track/1mNSomylino1Hoaw3MzCC8"},
     {title:"Go Fuck Yourself","spotify":"https://open.spotify.com/embed/track/3VAeTjREoKPY1exOXR4oBm"}
-    ]};
+    ]
+};
+
 var saved_playlists = [playlist1, playlist2, playlist3, playlist4];
 var playlists = localStorage.getItem('playlists') ? JSON.parse(localStorage.getItem('playlists')) : [];
 
-// Check if any saved playlist is not in the playlists array then add it
+// Merge any missing default playlists into current playlists
 saved_playlists.forEach(saved_playlist => {
     if (!playlists.some(playlist => playlist.title === saved_playlist.title)) {
         playlists.push(saved_playlist);
     }
 });
+
+// Save updated playlists and render the UI
 localStorage.setItem('playlists', JSON.stringify(playlists));
 populate_playlists(playlists);

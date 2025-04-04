@@ -1,26 +1,105 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
 button {
     margin-left: 0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
 }
 
 #playlistHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
+    padding: 1em 0;
+    margin-bottom: 2em;
+    border-bottom: 2px solid #333333;
 }
+
 #playlistHeaderButtons {
     margin: 0;
+    display: flex;
+    gap: 10px;
 }
+
 #removeSong {
-    background-color: red;
+    background-color: #ff4757;
     color: white;
-    border: none;
-    cursor: pointer;
-    margin-left: 0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
+
 #removeSong:hover {
-    background-color: darkred;
+    background-color: #ff6b81;
+    transform: scale(1.05);
 }
+
 #addButton {
     margin-left: 0;
+    background-color: #1abc9ceb;
+}
+
+#addButton:hover {
+    background-color: #1abc9c;
+    transform: translateY(-2px);
+}
+
+#playlistDetailsContainer {
+    margin-bottom: 2.5em;
+    padding: 1.5em;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.songInput {
+    margin-bottom: 1.5em;
+    padding: 1em;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"],
+input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background-color: #333333;
+    border: 2px solid #404040;
+    color: #ffffff;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+    background-color: #404040;
+}
+
+label {
+    color: #dddddd;
+}
+
+::placeholder {
+    color: #666666;
+}
+
+#export_playlist {
+    background-color: #2a2a2a;
+}
+
+#export_playlist:hover {
+    background-color: #404040;
+    transform: translateY(-2px);
 }

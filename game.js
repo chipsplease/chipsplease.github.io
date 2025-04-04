@@ -29,12 +29,36 @@ let debug_songs = [
     // }
 ];
 
+function displayWinner(winner) {
+    document.querySelector('.media_container').innerHTML = `
+        <div class="winner_container media_item">
+            <h2 class="song_title">🏆 Winner 🏆</h2>
+            <iframe class="embedContainer"></iframe>
+            <div class="winner_details">
+                <h3>${winner.title}</h3>
+                <button class="vote_button" onclick="window.location.href='index.html'">Back to Playlists</button>
+            </div>
+        </div>
+    `;
+
+    // Display the winner's video/song
+    const winnerIframe = document.querySelector('.winner_container iframe');
+    if (winner.youtube) {
+        createYoutubeEmbed(winnerIframe, winner.youtube);
+    } else {
+        createSpotifyEmbed(winnerIframe, winner.spotify);
+    }
+
+    // Ensure completed matches equals total matches for 100% progress
+    completedMatches = totalMatches;
+    updateProgressBar();
+}
+
 function tournamentBracket(songs) {
     console.log("Songs: ", songs);
-    if (songs.length === 1) { // End of the tournament
-        // Alert the winner
-        alert(`The winner is: ${songs[0].title}`);
-        return songs[0]; // The winner
+    if (songs.length === 1) {
+        displayWinner(songs[0]);
+        return songs[0];
     }
 
     nextRound = []; // Reset nextRound for the next round
@@ -109,6 +133,3 @@ if (songs) {
 } else {
     console.error('No songs data found in localStorage');
 }
-// I could have just had a single array with the songs and pop the loser then take next two songs. When the array has only one song left, it is the winner.
-// Instead i made it harder for no reason
-// I could have also used a binary tree to make it easier to keep track of the matches
