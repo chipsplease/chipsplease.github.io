@@ -1,38 +1,70 @@
 body {
     background-color: #121212;
     color: #E0E0E0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
-}
-header, footer {
     background-color: #1f1f1f;
-    padding: 1em;
+    padding: 1.5em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-footer {
+
+.button_container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    gap: 1em;
 }
-header h1, footer p {
-    margin: 0;
+
+.shuffle_all_button {
+    background-color: #9c1a1aeb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-header > h1 {
-    display: inline;
+
+.create_playlist_button:hover
+{
+    background-color: #1abc9c;
+    transform: translateY(-2px);
+}
+.shuffle_all_button:hover {
+    background-color: #b71c1c;
+    transform: translateY(-2px);
 }
 
 main {
+    flex: 1;
     padding: 2em;
+}
+
+.welcome-container {
+    background-color: #1f1f1f;
+    padding: 1.5em;
+    border-radius: 12px;
+    margin-bottom: 2em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.instructions {
+    color: #dddddd;
+    margin: 0.5em 0;
 }
 
 form {
     background-color: #1f1f1f;
     padding: 2em;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 form div {
@@ -44,7 +76,9 @@ label {
     margin-bottom: 0.5em;
 }
 
-input[type="text"], input[type="url"], textarea {
+input[type="text"], 
+input[type="url"], 
+textarea {
     width: 100%;
     padding: 0.75em;
     border: 1px solid #333;
@@ -53,10 +87,24 @@ input[type="text"], input[type="url"], textarea {
     color: #e0e0e0;
     font-size: 1em;
     box-sizing: border-box;
+    background-color: #333333;
+    border: 2px solid #404040;
+    color: #ffffff;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, 
+input[type="url"]:focus, 
+textarea:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+    background-color: #404040;
 }
 
 button[type="submit"], button[type="button"] {
-    background-color: #6200ea;
+    background-color: #1abc9ceb;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -64,17 +112,16 @@ button[type="submit"], button[type="button"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    margin: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-    background-color: #3700b3;
+    background-color: #1abc9c;
     transform: scale(1.05);
 }
 
 button:active {
-    background-color: #3700b3;
+    background-color: #1abc9c;
     transform: scale(1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -87,4 +134,84 @@ h2 {
 }
 textarea {
     resize: none;
-  }
+}
+
+footer {
+    background-color: #1f1f1f;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.feedback_button {
+    background-color: #2a2a2a;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.feedback_button:hover {
+    background-color: #404040;
+    transform: translateY(-2px);
+}
+
+.main-nav {
+    display: flex;
+    gap: 1em;
+}
+
+.nav-button {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.nav-button:hover {
+    background-color: #404040;
+    transform: translateY(-2px);
+}
+
+.nav-button.active {
+    background-color: #1abc9c;
+    color: white;
+}
+
+.content-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.content-section.active {
+    display: block;
+    opacity: 1;
+}
+
+.content-section h2 {
+    color: #1abc9c;
+    margin-bottom: 1em;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1em;
+        align-items: stretch;
+    }
+
+    .main-nav {
+        justify-content: center;
+    }
+
+    .button_container {
+        justify-content: center;
+    }
+}

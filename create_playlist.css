@@ -1,9 +1,17 @@
 .songInput {
-    margin-bottom: 1em;
+    margin-bottom: 2.5em;
+    padding: 1.5em;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 #importContainer {
-    margin-bottom: 2em;
+    margin-bottom: 2.5em;
+    padding: 1.5em;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 #importContainer label {
@@ -20,63 +28,163 @@
     display: inline-block;
     vertical-align: top;
 }
-#buttonSubmit {
-    background-color: #1abc9ceb; 
+
+input[type="text"],
+input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background-color: #333333;
+    border: 2px solid #404040;
+    color: #ffffff;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
 }
+
+input[type="text"]:focus,
+input[type="url"]:focus {
+    border-color: #1abc9c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.2);
+    background-color: #404040;
+}
+
+#buttonSubmit {
+    background-color: #1abc9ceb;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
 #buttonSubmit:hover {
     background-color: #1abc9c;
+    transform: translateY(-2px);
 }
 
 #removeSong {
-    background-color: red;
+    background-color: #ff4757;
     color: white;
     border: none;
     cursor: pointer;
     margin-left: 0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
+
 #removeSong:hover {
-    background-color: darkred;
+    background-color: #ff6b81;
+    transform: scale(1.05);
 }
+
 #playlistHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
+    padding: 1em 0;
+    margin-bottom: 2em;
+    border-bottom: 2px solid #333333;
 }
+
 .importHeader {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    margin: 0;
-    margin-bottom: 10px;
-    gap: 10px;
+    gap: 2em;
+    margin-bottom: 1.5em;
 }
+
 @media screen and (max-width: 768px) {
     .importHeader {
         flex-direction: column;
+        gap: 1em;
     }
     
 }
+
 .importHeader h3 {
     margin: 0;
     font-weight: 400;
 }
-#importPlaylistButton {
-    margin-left: 0;
-}
+
+#importPlaylistButton,
 #addButton {
-    margin-left: 0;
+    background-color: #1abc9ceb;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
-#spotifyHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0;
+
+#importPlaylistButton:hover,
+#addButton:hover {
+    background-color: #1abc9c;
+    transform: translateY(-2px);
 }
+
+#spotifyHeader,
 #youtubeHeader {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    margin: 0;
+    gap: 1em;
+    padding: 1em;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    color: #ffffff;
+}
+
+#spotifyHeader:hover,
+#youtubeHeader:hover {
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+    .importHeader {
+        flex-direction: column;
+        gap: 1em;
+    }
+    
+    #spotifyHeader,
+    #youtubeHeader {
+        width: 100%;
+    }
+}
+
+#playlistDetailsContainer {
+    margin-bottom: 2.5em;
+    padding: 1.5em;
+    background-color: #1f1f1f;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#playlistDetailsContainer div {
+    margin-bottom: 1em;
+}
+
+#playlistDetailsContainer div:last-child {
+    margin-bottom: 0;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.disclaimer {
+    color: #888888;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+label {
+    color: #dddddd;
+}
+
+::placeholder {
+    color: #666666;
 }

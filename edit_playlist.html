@@ -21,22 +21,24 @@
             <div id="playlistHeader">
                 <h2>Playlist</h3>
                 <div id="playlistHeaderButtons">
-                    <button type="submit" style="background-color: teal;">Update Playlist</button>
+                    <button type="submit" style="background-color: #1abc9ceb;">Update Playlist</button>
                     <button type="button" id="export_playlist">Export</button>
-                    <button type="button" id="delete_playlist" style="background-color: rgba(255, 0, 0, 0.492);">Delete</button>
+                    <button type="button" id="delete_playlist" style="background-color: #ff4757;">Delete</button>
                 </div>
             </div>
-            <div>
-                <label for="playlistTitle">Title:</label>
-                <input type="text" id="playlistTitle" name="playlistTitle" required>
-            </div>
-            <div>
-                <label for="playlistDescription">Description:</label>
-                <input type="text" id="playlistDescription" name="playlistDescription" required></input>
-            </div>
-            <div>
-                <label for="playlistImageUrl">Image URL:</label>
-                <input type="url" id="playlistImageUrl" name="playlistImageUrl">
+            <div id="playlistDetailsContainer">
+                <div>
+                    <label for="playlistTitle">Title:</label>
+                    <input type="text" id="playlistTitle" name="playlistTitle" required>
+                </div>
+                <div>
+                    <label for="playlistDescription">Description:</label>
+                    <input type="text" id="playlistDescription" name="playlistDescription" required></input>
+                </div>
+                <div>
+                    <label for="playlistImageUrl">Image URL:</label>
+                    <input type="url" id="playlistImageUrl" name="playlistImageUrl">
+                </div>
             </div>
             <h3>Songs</h3>
             <div class="songInput">

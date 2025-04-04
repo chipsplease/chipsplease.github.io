@@ -147,7 +147,7 @@ document.getElementById("delete_playlist").addEventListener("click", function() 
     if (playlist) {
         playlist = JSON.parse(playlist);
     } else {
-        return [];
+        return;
     }
     let playlists = localStorage.getItem('playlists');
     if (playlists) {
